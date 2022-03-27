@@ -2,31 +2,64 @@ import { CronJob } from "cron";
 
 class Vehicle {
 
-    charge: number;
-    hours:  number;
-    bill:   number;
+    charge:         number;
+    hours:          number;
+    bill:           number;
+    hourly_cron:    CronJob;
+    daily_cron:     CronJob;
+    out_cron:       CronJob;
+    out_hours:      number;
 
     constructor() {
-        this.charge = 0;
-        this.hours  = 0;
-        this.bill   = 0;
-    }
-
-    park() {
+        this.charge     = 0;
+        this.hours      = 0;
+        this.bill       = 0;
+        this.out_hours  = 0;
 
         // runs hourly
-        let hourly_cron = new CronJob('0 * * * * *', () => {
+        this.hourly_cron = new CronJob('0 * * * * *', () => {
             this.hours++;
             this.hours > 3 ? this.bill = this.bill + this.charge : this.bill = this.bill + 40;
         });
 
         // runs daily
-        let daily_cron = new CronJob('0 0 * * * *', () => {
+        this.daily_cron = new CronJob('0 0 * * * *', () => {
             this.hours = this.hours + 5000;
+        });
+
+        // runs hourly
+        this.out_cron = new CronJob('0 * * * * *', () => {
+            this.out_hours++;
+        });
+    }
+
+    park() {
+        this.hourly_cron.start();
+        this.daily_cron.start();
+        this.out_cron.stop();
+
+        if (this.hours == 1) {
+            this.bill = this.bill + this.charge;
+        }
+
+        this.out_hours = 0;
+        return;
+    }
+
+    unpark() {
+
+        this.hourly_cron.stop();
+        this.daily_cron.stop();
+
+        this.out_cron.start();
+
+        // hours of exit
+        let hourly_cron = new CronJob('0 * * * * *', () => {
+            this.hours++;
+            this.hours > 3 ? this.bill = this.bill + this.charge : this.bill = this.bill + 40;
         });
           
         hourly_cron.start();
-        daily_cron.start();
         return;
     }
 }

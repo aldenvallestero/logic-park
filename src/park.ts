@@ -16,8 +16,13 @@ class Park {
         this.slot.forEach((i, j) => {
             
             // if space is available and nearest from the entry point
-            if (!i.occupied && i.distance <= distance) {
+            if (!i.occupied) {
                 
+                i.distance.forEach(j => {
+                    if (j < distance) {
+                        distance = j;
+                    }
+                })
                 // if vehicle is fit to slot size
 
                 if (i.size == 'small' && vehicle.small_parking_slot)        index = j;
@@ -27,10 +32,10 @@ class Park {
 
         });
 
-        this.occupy(vehicle, this.slot[index]);
+        this.occupy(vehicle, this.slot[index], distance);
     }
 
-    occupy(vehicle: any, i: any) {
+    occupy(vehicle: any, i: any, distance: number) {
         vehicle.park();         // run the timer
         i.vehicle = vehicle;    // store the vehicle
         i.occupied = true;      // slot is no more available for occupancy
@@ -38,6 +43,7 @@ class Park {
     }
 
     exit(vehicle: any) {
+        vehicle.unpark();
         console.log('====== PARKING RECEIPT ======');
         console.log('Bill: ', parseFloat(vehicle.bill));
         console.log('=============================');

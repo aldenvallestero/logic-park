@@ -1,5 +1,5 @@
 export default interface ISlot {
-    distance:   number,
+    distance:   number[],
     size:       string,
     occupied:   boolean,
     vehicle:    any,

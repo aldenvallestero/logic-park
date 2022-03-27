@@ -10,17 +10,17 @@ import ISlot from "./interfaces/slot.interface";
 const park = new Park();
 
 // STEP 2: CREATE EMPTY PARKING SLOTS
-let small_parking_slot_1: ISlot = { distance: 3, size: 'small', occupied: false, vehicle: null };
-let small_parking_slot_2: ISlot = { distance: 4, size: 'small', occupied: false, vehicle: null };
-let small_parking_slot_3: ISlot = { distance: 5, size: 'small', occupied: false, vehicle: null };
+let small_parking_slot_1: ISlot = { distance: [1, 2, 3], size: 'small', occupied: false, vehicle: null };
+let small_parking_slot_2: ISlot = { distance: [1, 4, 5], size: 'small', occupied: false, vehicle: null };
+let small_parking_slot_3: ISlot = { distance: [4, 3, 3], size: 'small', occupied: false, vehicle: null };
 
-let medium_parking_slot_1: ISlot = { distance: 6, size: 'medium', occupied: false, vehicle: null };
-let medium_parking_slot_2: ISlot = { distance: 7, size: 'medium', occupied: false, vehicle: null };
-let medium_parking_slot_3: ISlot = { distance: 8, size: 'medium', occupied: false, vehicle: null };
+let medium_parking_slot_1: ISlot = { distance: [1, 5, 5], size: 'medium', occupied: false, vehicle: null };
+let medium_parking_slot_2: ISlot = { distance: [5, 4, 3], size: 'medium', occupied: false, vehicle: null };
+let medium_parking_slot_3: ISlot = { distance: [2, 3, 3], size: 'medium', occupied: false, vehicle: null };
 
-let large_parking_slot_1: ISlot = { distance: 9, size: 'large', occupied: false, vehicle: null };
-let large_parking_slot_2: ISlot = { distance: 1, size: 'large', occupied: false, vehicle: null };
-let large_parking_slot_3: ISlot = { distance: 1, size: 'large', occupied: false, vehicle: null };
+let large_parking_slot_1: ISlot = { distance: [1, 3, 2], size: 'large', occupied: false, vehicle: null };
+let large_parking_slot_2: ISlot = { distance: [3, 3, 4], size: 'large', occupied: false, vehicle: null };
+let large_parking_slot_3: ISlot = { distance: [5, 4, 1], size: 'large', occupied: false, vehicle: null };
 
 park.create_slot(small_parking_slot_1);
 park.create_slot(small_parking_slot_2);
