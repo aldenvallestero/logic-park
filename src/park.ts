@@ -23,8 +23,8 @@ class Park {
                         distance = j;
                     }
                 })
-                // if vehicle is fit to slot size
 
+                // if vehicle is fit to slot size
                 if (i.size == 'small' && vehicle.small_parking_slot)        index = j;
                 else if (i.size == 'medium' && vehicle.medium_parking_slot) index = j;
                 else if (i.size == 'large' && vehicle.large_parking_slot)   index = j;

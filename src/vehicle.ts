@@ -38,7 +38,7 @@ class Vehicle {
         this.daily_cron.start();
         this.out_cron.stop();
 
-        if (this.hours == 1) {
+        if (this.hours <= 1) {
             this.bill = this.bill + this.charge;
         }
 
