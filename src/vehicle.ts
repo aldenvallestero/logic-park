@@ -48,19 +48,9 @@ class Vehicle {
     }
 
     unpark() {
-
         this.hourly_cron.stop();
         this.daily_cron.stop();
-
         this.out_cron.start();
-
-        // hours of exit
-        let hourly_cron = new CronJob('0 * * * * *', () => {
-            this.hours++;
-            this.hours > 3 ? this.bill = this.bill + this.charge : this.bill = this.bill + 40;
-        });
-          
-        hourly_cron.start();
         return;
     }
 }
