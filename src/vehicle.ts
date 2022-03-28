@@ -20,7 +20,7 @@ class Vehicle {
         // runs hourly
         this.hourly_cron = new CronJob('0 * * * * *', () => {
             this.hours++;
-            this.hours >= 3 ? this.bill = this.bill + this.charge : this.bill = this.bill + 40;
+            this.hours > 3 ? this.bill = this.bill + this.charge : this.bill = this.bill + 40;
         });
 
         // runs daily
@@ -39,7 +39,7 @@ class Vehicle {
         this.daily_cron.start();
         this.out_cron.stop();
 
-        if (this.hours <= 1) {
+        if (this.hours == 1) {
             this.bill = this.bill + this.charge;
         }
 
